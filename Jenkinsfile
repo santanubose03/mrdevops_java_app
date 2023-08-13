@@ -26,7 +26,8 @@ pipeline{
              }
            }
        }
-     post {
+    stage('clean Workspace'){
+         post {
         always {
             script {
                 // Delete all files and subdirectories in the workspace
@@ -34,6 +35,7 @@ pipeline{
                 sh "rm -rf ${workspace}/*"
             }
         }
+      }
     }
        
     }
