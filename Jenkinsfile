@@ -26,9 +26,8 @@ pipeline{
              }
            }
        }
-    stage('clean Workspace'){
-       steps{
-           post {
+    }
+  post {
             always {
              script {
                 // Delete all files and subdirectories in the workspace
@@ -37,8 +36,4 @@ pipeline{
             }
         }
       }
-       }
-    }
-       
-    }
 }
