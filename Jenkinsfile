@@ -26,6 +26,15 @@ pipeline{
              }
            }
        }
+     post {
+        always {
+            script {
+                // Delete all files and subdirectories in the workspace
+                def workspace = pwd()  // Get the current workspace path
+                sh "rm -rf ${workspace}/*"
+            }
+        }
+    }
        
     }
 }
