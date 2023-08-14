@@ -5,8 +5,8 @@ pipeline{
   choice choices: ['create delete'], description: 'for creating and destroying pods', name: 'action'
   }
   stages{
-    when { expression { params.action == 'create' }}
     stage('Git Checkout'){
+      when { expression { params.action == 'create' }}
         steps{ 
           script{
                gitCheckout(
