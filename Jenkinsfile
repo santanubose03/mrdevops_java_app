@@ -5,7 +5,7 @@ pipeline{
   choice choices: ['create delete'], description: 'for creating and destroying pods', name: 'action'
   }
   stages{
-    when { expression { param.action == 'create' }}
+    when { expression { params.action == 'create' }}
     stage('Git Checkout'){
         steps{ 
           script{
@@ -18,7 +18,7 @@ pipeline{
        }
     
      stage('Unit Testing '){
-       when { expression { param.action == 'create' }}
+       when { expression { params.action == 'create' }}
         steps{ 
           script{
                mvnTest()
@@ -26,7 +26,7 @@ pipeline{
            }
        }
     stage('Maven Build '){
-      when { expression { param.action == 'create' }}
+      when { expression { params.action == 'create' }}
         steps{ 
           script{
                mvnBuild()
