@@ -35,7 +35,8 @@ pipeline{
                 //println "workspace path is : ${workspace}"
                 //sh "rm -rf ${workspace}/*"
               // bat "rmdir /S /Q ."
-               deleteDir()
+              // deleteDir()
+               cleanWs()
             }
         }
       }
