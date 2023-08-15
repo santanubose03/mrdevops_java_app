@@ -17,11 +17,19 @@ pipeline{
            }
        }
     
-     stage('Unit Testing '){
+     stage('Unit Testing'){
        when { expression { params.action == 'create' }}
         steps{ 
           script{
                mvnTest()
+             }
+           }
+       }
+     stage('Maven Integration Testing'){
+      when { expression { params.action == 'create' }}
+        steps{ 
+          script{
+               mvnIntegrationTest()
              }
            }
        }
