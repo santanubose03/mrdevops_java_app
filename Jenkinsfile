@@ -2,7 +2,7 @@
 pipeline{
   agent any
   parameters {
-  choice choices: ['create,delete'], description: 'for creating and destroying pods', name: 'action'
+  choice choices: ['create','delete'], description: 'for creating and destroying pods', name: 'action'
   }
   stages{
     stage('Git Checkout'){
