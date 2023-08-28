@@ -1,10 +1,12 @@
 @Library('my-shared-library') _
 pipeline{
   agent any
-
+  parameters {
+  choice choices: ['create delete'], description: 'for creating and destroying pods', name: 'action'
+  }
   stages{
     stage('Git Checkout'){
-      
+      when { expression { params.action == 'create' }}
         steps{ 
           script{
                gitCheckout(
@@ -16,7 +18,7 @@ pipeline{
        }
     
      stage('Unit Testing'){
-       
+       when { expression { params.action == 'create' }}
         steps{ 
           script{
                mvnTest()
@@ -32,7 +34,7 @@ pipeline{
            }
        }
     stage('Maven Build '){
-      
+      when { expression { params.action == 'create' }}
         steps{ 
           script{
                mvnBuild()
