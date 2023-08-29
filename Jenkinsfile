@@ -41,8 +41,8 @@ pipeline{
              }
            }
        }
-    }
-    stage('Maven Build '){
+    
+    stage('Static Code Analysis'){
       when { expression { params.action == 'create' }}
         steps{ 
           script{
@@ -50,7 +50,6 @@ pipeline{
              }
            }
        }
-    }
   post {
             always {
              script {
