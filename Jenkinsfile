@@ -5,6 +5,7 @@ pipeline{
   choice choices: ['create','delete'], description: 'for creating and destroying pods', name: 'action'
   }
   stages{
+    
     stage('Git Checkout'){
       when { expression { params.action == 'create' }}
         steps{ 
@@ -33,16 +34,7 @@ pipeline{
              }
            }
        }
-    stage('Maven Build '){
-      when { expression { params.action == 'create' }}
-        steps{ 
-          script{
-               mvnBuild()
-             }
-           }
-       }
-    
-    stage('Static Code Analysis'){
+    stage('Static Code Analysis: Sonar'){
       when { expression { params.action == 'create' }}
         steps{ 
           script{
@@ -50,6 +42,22 @@ pipeline{
              }
            }
        }
+    stage('Quality Gate Check: Sonarqube'){
+      when { expression { params.action == 'create' }}
+        steps{ 
+          script{
+               qualityGate()
+             }
+           }
+       }
+    stage('Maven Build '){
+      when { expression { params.action == 'create' }}
+        steps{ 
+          script{
+               mvnBuild()
+             }
+           }
+       }    
   }
   post {
             always {
