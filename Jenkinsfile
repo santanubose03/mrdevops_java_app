@@ -66,17 +66,17 @@ pipeline{
            }
        }    
   }
-  post {
-            always {
-             script {
-                // Delete all files and subdirectories in the workspace
-                //def workspace = pwd()  // Get the current workspace path
-                //println "workspace path is : ${workspace}"
-                //sh "rm -rf ${workspace}/*"
-              // bat "rmdir /S /Q ."
-              // deleteDir()
-               cleanWs()
-            }
-        }
-      }
+  // post {
+  //           always {
+  //            script {
+  //               // Delete all files and subdirectories in the workspace
+  //               //def workspace = pwd()  // Get the current workspace path
+  //               //println "workspace path is : ${workspace}"
+  //               //sh "rm -rf ${workspace}/*"
+  //             // bat "rmdir /S /Q ."
+  //             // deleteDir()
+  //              cleanWs()
+  //           }
+  //       }
+  //     }
 }
