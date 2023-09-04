@@ -67,5 +67,13 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>a0l4kmvl8xzzk-artifactory-primary-0-snapshots</name>
+            <url>https://santanubose.jfrog.io/artifactory/libs-snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>     
+
 
 </project>
