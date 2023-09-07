@@ -2,8 +2,12 @@
 pipeline{
   agent any
   parameters {
-  choice choices: ['create','delete'], description: 'for creating and destroying pods', name: 'action'
+  choice (name: 'action', choices: ['create','delete'], description: 'for creating and destroying pods')
+  String (name:'imageName',description: 'Name of docker build image', defaultValue:'javaapp')
+  String (name:'imageTag',description: 'Tag of docker build image', defaultValue:'v1')
+  String (name:'appName',description: 'name of Application', defaultValue:'springboot')
   }
+  
   stages{
     
     stage('Git Checkout'){
@@ -64,7 +68,15 @@ pipeline{
                mvnBuild()
              }
            }
-       }    
+       }  
+    stage('Maven Build '){
+      when { expression { params.action == 'create' }}
+        steps{ 
+          script{
+               dockerBuild()
+             }
+           }
+       }
   }
   // post {
   //           always {
